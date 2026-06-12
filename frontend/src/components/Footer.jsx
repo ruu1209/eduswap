@@ -9,9 +9,9 @@ const Footer = () => (
           <span className="bg-[#A7F3D0] border-2 border-black rounded-md px-2 py-0.5">Edu</span>
           <span>Swap</span>
         </div>
-        <p className="text-sm text-[#4B5563] mt-3 leading-relaxed">
-          A verified VIT-only peer-to-peer marketplace. Buy & sell notes, books, gadgets, and more — safely, on campus.
-        </p>
+       <p className="text-sm text-[#4B5563] mt-3 leading-relaxed">
+  EduSwap is a student marketplace built for VIT students to buy, sell, and exchange academic resources, electronics, and everyday essentials securely within the campus community.
+</p>
       </div>
       <div>
         <p className="text-xs uppercase tracking-[0.15em] font-bold mb-3">Platform</p>
@@ -31,8 +31,10 @@ const Footer = () => (
       </div>
     </div>
     <div className="border-t-2 border-black py-4 text-center text-xs uppercase tracking-[0.15em] font-semibold">
-      © 2026 EduSwap · Built for VIT Students
-    </div>
+  © 2025 EduSwap · Built for VIT Students
+  <br />
+  Developed by Runjan Bawa
+</div>
   </footer>
 );
 
