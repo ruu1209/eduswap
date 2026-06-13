@@ -19,9 +19,24 @@ const Home = () => {
   const [featured, setFeatured] = useState([]);
   const { user } = useAuth();
 
-  useEffect(() => {
-    api.get("/listings?limit=8").then((r) => setFeatured(r.data)).catch(() => {});
-  }, []);
+ useEffect(() => {
+  api.get("/listings?limit=8")
+    .then((r) => {
+      console.log("API RESPONSE:", r.data);
+
+      if (Array.isArray(r.data)) {
+        setFeatured(r.data);
+      } else if (Array.isArray(r.data.listings)) {
+        setFeatured(r.data.listings);
+      } else {
+        setFeatured([]);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      setFeatured([]);
+    });
+}, []);
 
   const toggleSave = async (id) => {
     if (!user) return toast.error("Please log in to save items");
@@ -32,6 +47,9 @@ const Home = () => {
       toast.error("Failed");
     }
   };
+  console.log("FEATURED:", featured);
+console.log("TYPE:", typeof featured);
+console.log("IS ARRAY:", Array.isArray(featured));
 
   return (
     <div data-testid="home-page">
@@ -155,7 +173,8 @@ const Home = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featured.map((l) => (
+            {Array.isArray(featured) &&
+  featured.map((l) => (
               <ListingCard key={l.id} listing={l} onToggleSave={user ? toggleSave : undefined} />
             ))}
           </div>
